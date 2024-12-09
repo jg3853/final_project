@@ -1,0 +1,96 @@
+body {
+    font-family: Arial, sans-serif;
+    margin: 0;
+    padding: 0;
+    background-color: #f9f9f9;
+}
+
+.navbar {
+    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+    z-index: 1000;
+}
+
+h2 {
+    margin-bottom: 20px;
+    font-size: 1.8rem;
+    color: #333;
+    text-align: center;
+    text-transform: uppercase;
+    letter-spacing: 1px;
+}
+
+.card {
+    border: none;
+    border-radius: 8px;
+    box-shadow: 0 2px 8px rgba(0, 0, 0, 0.1);
+    margin-bottom: 30px;
+    background: #fff;
+}
+
+.card-title {
+    font-size: 1.5rem;
+    color: #007bff;
+    font-weight: bold;
+}
+
+.form-label {
+    font-weight: bold;
+    color: #555;
+}
+
+.form-control {
+    border-radius: 6px;
+    border: 1px solid #ddd;
+}
+
+.btn-primary {
+    background-color: #007bff;
+    border: none;
+    border-radius: 6px;
+    padding: 10px 20px;
+    font-size: 1rem;
+    transition: background-color 0.3s;
+}
+
+.btn-primary:hover {
+    background-color: #0056b3;
+}
+
+.img-fluid {
+    border-radius: 8px;
+    max-height: 300px;
+    object-fit: cover;
+    margin-top: 15px;
+}
+
+section {
+    padding: 40px 20px;
+    background-color: #ffffff;
+    border-radius: 10px;
+    margin-bottom: 30px;
+}
+
+#whereToVisit {
+    background-color: #fdffb5;
+}
+
+#packingList {
+    background-color: #fdffb5;
+}
+
+#whereToStay {
+    background-color: #fdffb5;
+}
+
+#itineraries {
+    background-color: #fdffb5;
+}
+
+#activities {background-color: #fdffb5;}
+
+#map {height: 540px;}
+
+.nav-link.active {
+    font-weight: bold;
+    color: #fdffb5 !important;
+}

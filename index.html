@@ -1,0 +1,298 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Travel Planner Application</title>
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha1/dist/css/bootstrap.min.css" rel="stylesheet">
+    <!-- Leaflet OPEN SOURCE Interactive Map-->
+    <link rel="stylesheet" href="https://unpkg.com/leaflet@1.9.4/dist/leaflet.css"integrity="sha256-p4NxAoJBhIIN+hmNHrzRCf9tD/miZyoHS5obTRR9BMY="crossorigin=""/>
+    <!-- Project Style Sheet-->
+    <link rel="stylesheet" href="style.css">
+    <style>
+        html {
+            scroll-behavior: smooth;
+        }
+        body {
+            position: relative;
+        }
+    </style>
+</head>
+<body data-bs-spy="scroll" data-bs-target="#navbar" data-bs-offset="50" tabindex="0">
+    <!-- Navigation Bar -->
+    <nav id="navbar" class="navbar navbar-expand-lg navbar-dark bg-dark fixed-top">
+        <div class="container-fluid">
+            <a class="navbar-brand" href="#">Travel Planner</a>
+            <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav" aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
+                <span class="navbar-toggler-icon"></span>
+            </button>
+            <div class="collapse navbar-collapse" id="navbarNav">
+                <ul class="navbar-nav me-auto">
+                    <li class="nav-item">
+                        <a class="nav-link" href="#whereToVisit">Where to Visit</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="#packingList">Packing List</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="#whereToStay">Accommodations</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="#itineraries">Itineraries</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="#activities">Activities</a>
+                    </li>
+                </ul>
+            </div>
+        </div>
+    </nav>
+
+    <!-- Main Content -->
+    <div class="container mt-5 pt-5">
+
+        <!-- Where To Visit Section -->
+        <section id="whereToVisit" class="mt-5">
+            <h2>Where to Visit</h2>
+            <div class="card">
+                <div class="card-body">
+                    <h5 class="card-title">Add Place to Visit</h5>
+                    <form>
+                        <div class="mb-3">
+                            <label for="visitPlace" class="form-label">Place Name</label>
+                            <input type="text" class="form-control" id="visitPlace" placeholder="Enter place name">
+                        </div>
+                        <div class="mb-3">
+                            <label for="visitDate" class="form-label">Date to Visit</label>
+                            <input type="date" class="form-control" id="visitDate">
+                        </div>
+                        <button id="addVisitBtn" type="submit" class="btn btn-primary">Add Place</button>
+                    </form>
+                    <div class="table-responsive">
+                        <table class="table table-bordered">
+                            <thead>
+                                <tr>
+                                    <th>Visitation Spots</th>
+                                    <th>Dates</th>
+                                </tr>
+                            </thead>
+                            <tbody>
+                                <tr>
+                                    <td>
+                                        <ul class="visit_list-unstyled"></ul>
+                                    </td>
+                                    <td>
+                                        <ul class="visitDates_list-unstyled"></ul>
+                                    </td>
+                                </tr>
+                            </tbody>
+                        </table>
+                    </div>
+                </div>
+                <div class="mt-3 text-center">
+                    <img src="pexels-leeloothefirst-8937442.jpg" alt="Where to Visit" class="img-fluid">
+                </div>
+            </div>
+        </section>
+
+        <!-- Packing List Section -->
+        <section id="packingList" class="mt-5">
+            <h2>Packing List</h2>
+            <div class="card">
+                <div class="card-body">
+                    <h5 class="card-title">Add Packing Items</h5>
+                    <form>
+                        <div class="mb-3">
+                            <label for="packingItem" class="form-label">Item Name</label>
+                            <input type="text" class="form-control" id="packingItem" placeholder="Enter item">
+                        </div>
+                        <button id="addPackingBtn" type="submit" class="btn btn-primary">Add Item</button>
+                    </form>
+                    <div class="table-responsive">
+                        <table class="table table-bordered">
+                            <thead>
+                                <tr>
+                                    <th>Packing Items</th>
+                                    <th>Mark as Packed</th>
+                                </tr>
+                            </thead>
+                            <tbody>
+                                <tr>
+                                    <td>
+                                        <ul class="packingItems_list-unstyled"></ul>
+                                    </td>
+                                    <td>
+                                        <ul class="packedStatus_list-unstyled"></ul>
+                                    </td>
+                                </tr>
+                            </tbody>
+                        </table>
+                    </div>
+                </div>
+                <div class="mt-3 text-center">
+                    <img src="pexels-mrwson-4275885.jpg" alt="Packing List" class="img-fluid">
+                </div>
+            </div>
+        </section>
+
+        <!-- Accommodations -->
+        <section id="whereToStay" class="mt-5">
+            <h2>Accommodations</h2>
+            <div class="card">
+                <div class="card-body">
+                    <h5 class="card-title">Add Accommodation</h5>
+                    <form>
+                        <div class="mb-3">
+                            <label for="accommodation" class="form-label">Accommodation Name</label>
+                            <input type="text" class="form-control" id="accommodation" placeholder="Enter accommodation name">
+                        </div>
+                        <div class="mb-3">
+                            <label for="location" class="form-label">Location</label>
+                            <input type="text" class="form-control" id="accLocation" placeholder="Enter location">
+                        </div>
+                        <button id="addStayBtn" type="submit" class="btn btn-primary">Add Accommodation</button>
+                    </form>
+                    <div class="table-responsive">
+                        <table class="table table-bordered">
+                            <thead>
+                                <tr>
+                                    <th>Accommodation Name</th>
+                                    <th>Location</th>
+                                </tr>
+                            </thead>
+                            <tbody>
+                                <tr>
+                                    <td>
+                                        <ul class="stay_list-unstyled"></ul>
+                                    </td>
+                                    <td>
+                                        <ul class="stayLocs_list-unstyled"></ul>
+                                    </td>
+                                </tr>
+                            </tbody>
+                        </table>
+                    </div>
+                </div>
+                <div class="mt-3 text-center">
+                    <img src="pexels-pixabay-258154.jpg" alt="Accommodations" class="img-fluid">
+                </div>
+            </div>
+        </section>
+    
+        <!-- Itineraries Section -->
+        <section id="itineraries" class="mt-5">
+            <h2>Itineraries</h2>
+            <div class="card mb-3">
+                <div class="card-body">
+                    <h5 class="card-title">Create a New Itinerary</h5>
+                    <form>
+                        <div class="mb-3">
+                            <label for="destination" class="form-label">Destination</label>
+                            <input type="text" class="form-control" id="destination" placeholder="Enter destination">
+                        </div>
+                        <div class="mb-3">
+                            <label for="startDate" class="form-label">Start Date</label>
+                            <input type="date" class="form-control" id="startDate">
+                        </div>
+                        <div class="mb-3">
+                            <label for="endDate" class="form-label">End Date</label>
+                            <input type="date" class="form-control" id="endDate">
+                        </div>
+                        <button id="addItinBtn" type="submit" class="btn btn-primary">Add Itinerary</button>
+                    </form>
+                    <div class="table-responsive">
+                        <table class="table table-bordered">
+                            <thead>
+                                <tr>
+                                    <th>Destination</th>
+                                    <th>Start Date</th>
+                                    <th>End Date</th>
+                                </tr>
+                            </thead>
+                            <tbody>
+                                <tr>
+                                    <td>
+                                        <ul class="itin_list-unstyled"></ul>
+                                    </td>
+                                    <td>
+                                        <ul class="itinStartDates_list-unstyled"></ul>
+                                    </td>
+                                    <td>
+                                        <ul class="itinEndDates_list-unstyled"></ul>
+                                    </td>
+                                </tr>
+                            </tbody>
+                        </table>
+                    </div>
+                </div>
+                <div class="mt-3 text-center">
+                    <img src="pexels-pixabay-260922.jpg" alt="Itineraries" class="img-fluid">
+                </div>
+            </div>
+        </section>
+
+        <!-- Activities -->
+        <section id="activities" class="mt-5">
+            <h2>Activities</h2>
+            <div class="card">
+                <div class="card-body">
+                    <h5 class="card-title">Add Activity</h5>
+                    <form>
+                        <div class="mb-3">
+                            <label for="activity" class="form-label">Activity Name</label>
+                            <input type="text" class="form-control" id="activity" placeholder="Enter activity name">
+                        </div>
+                        <div class="mb-3">
+                            <label for="location" class="form-label">Location</label>
+                            <input type="text" class="form-control" id="activLocation" placeholder="Enter location">
+                        </div>
+                        <div class="mb-3">
+                            <label for="travelDates" class="form-label">Travel Dates</label>
+                            <input type="date" class="form-control" id="activTravelDates">
+                        </div>
+                        <button id="addActivBtn" type="submit" class="btn btn-primary">Add activity</button>
+                    </form>
+                    <div class="table-responsive">
+                        <table class="table table-bordered">
+                            <thead>
+                                <tr>
+                                    <th>Visitation Spots</th>
+                                    <th>Locations</th>
+                                    <th>Dates</th>
+                                </tr>
+                            </thead>
+                            <tbody>
+                                <tr>
+                                    <td>
+                                        <ul class="activ_list-unstyled"></ul>
+                                    </td>
+                                    <td>
+                                        <ul class="activLocs_list-unstyled"></ul>
+                                    </td>
+                                    <td>
+                                        <ul class="activDates_list-unstyled"></ul>
+                                    </td>
+                                </tr>
+                            </tbody>
+                        </table>
+                    </div>
+                </div>
+                <div class="mt-3 text-center">
+                    <img src="dogs.jpg" alt="Activity" class="img-fluid">
+                </div>
+            </div>
+        </section>
+        <!-- Interactive Map -->
+        <div id="map"></div>
+    </div>
+
+    <!-- Bootstrap JavaScript -->
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha1/dist/js/bootstrap.bundle.min.js"></script>
+    <!-- JQuery -->
+    <script src="https://code.jquery.com/jquery-3.5.1.slim.min.js"></script>
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.7.1/jquery.min.js"></script>
+    <!-- Open Source Map -->
+    <script src="https://unpkg.com/leaflet@1.9.4/dist/leaflet.js"integrity="sha256-20nQCchB9co0qIjJZRGuk2/Z9VM+kNiyxNV1lvTlZBo="crossorigin=""></script>
+    <script src="app.js"></script>
+</body>
+</html>
